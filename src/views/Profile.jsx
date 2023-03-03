@@ -11,7 +11,10 @@ const Profile = () => {
   const { userFavorites, setUserFavorites, userLogged } = useContext(contexto);
   useEffect(() => {
     const fetchFavorites = async () => {
-      const allFavs = await axios.get(`/getAllFavs?id=${userLogged.data.id}`);
+      const allFavs = await axios.get(
+        `https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/getAllFavs?id=${userLogged.data.id}`,
+        { withCredentials: true, credentials: "include" }
+      );
       setUserFavorites(allFavs.data);
     };
     userLogged.data && fetchFavorites();

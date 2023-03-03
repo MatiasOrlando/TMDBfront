@@ -24,10 +24,14 @@ const LogIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userLogOk = await axios.post("/login", {
-        username: formValues.username,
-        password: formValues.password,
-      });
+      const userLogOk = await axios.post(
+        "https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/login",
+        {
+          username: formValues.username,
+          password: formValues.password,
+        },
+        { withCredentials: true, credentials: "include" }
+      );
       setUserLogged(userLogOk);
       navigateHome("/");
     } catch {

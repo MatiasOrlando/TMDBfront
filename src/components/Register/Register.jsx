@@ -21,11 +21,15 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/register", {
-        username: formValues.username,
-        email: formValues.email,
-        password: formValues.password,
-      });
+      await axios.post(
+        "https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/register",
+        {
+          username: formValues.username,
+          email: formValues.email,
+          password: formValues.password,
+        },
+        { withCredentials: true, credentials: "include" }
+      );
       swal({
         title: `Account successfully created`,
         icon: `success`,

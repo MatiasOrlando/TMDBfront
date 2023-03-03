@@ -29,7 +29,10 @@ const Context = ({ children }) => {
       );
       if (matchCookie) {
         const userPersist = async () => {
-          const userLog = await axios.get("/me");
+          const userLog = await axios.get(
+            "https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/me",
+            { withCredentials: true, credentials: "include" }
+          );
           setUserLogged(userLog);
         };
         userPersist();
@@ -55,14 +58,18 @@ const Context = ({ children }) => {
 
   const addToFavorites = async (item) => {
     try {
-      await axios.post("/addFavorites", {
-        email: userLogged.data.email,
-        movieId: item.id,
-        title: item.title || item.name,
-        vote_average: item.vote_average,
-        poster_path: item.poster_path,
-        adult: item.title ? true : false,
-      });
+      await axios.post(
+        "https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/addFavorites",
+        {
+          email: userLogged.data.email,
+          movieId: item.id,
+          title: item.title || item.name,
+          vote_average: item.vote_average,
+          poster_path: item.poster_path,
+          adult: item.title ? true : false,
+        },
+        { withCredentials: true, credentials: "include" }
+      );
       toast.success("Successfully added to favorites", {
         duration: "100",
         style: {
@@ -82,7 +89,10 @@ const Context = ({ children }) => {
   };
 
   const removeFromFavorites = async (item) => {
-    await axios.delete(`/removeFavorites?id=${item.id}`);
+    await axios.delete(
+      `https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/removeFavorites?id=${item.id}`,
+      { withCredentials: true, credentials: "include" }
+    );
     toast.error("Successfully deleted from favorites", {
       duration: "100",
       style: {
