@@ -22,7 +22,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/register",
+        "https://matiastmbdback.onrender.com/register",
         {
           username: formValues.username,
           email: formValues.email,
