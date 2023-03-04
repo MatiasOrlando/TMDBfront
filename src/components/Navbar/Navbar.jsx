@@ -12,10 +12,10 @@ const NavBar = () => {
   const navigateHome = useNavigate();
   const logOut = async () => {
     try {
-      await axios.post(
-        "https://api.render.com/deploy/srv-cg0dp1t269vdqr9o5gag?key=IkLcycb7W4M/logout",
-        { withCredentials: true, credentials: "include" }
-      );
+      await axios.post("https://matiastmbdback.onrender.com/logout", {
+        withCredentials: true,
+        credentials: "include",
+      });
       setUserLogged({});
       navigateHome("/");
     } catch ({ response }) {
