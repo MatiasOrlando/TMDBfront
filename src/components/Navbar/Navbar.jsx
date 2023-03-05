@@ -17,6 +17,7 @@ const NavBar = () => {
         credentials: "include",
       });
       setUserLogged({});
+      localStorage.removeItem("user");
       navigateHome("/");
     } catch ({ response }) {
       console.log(response);
