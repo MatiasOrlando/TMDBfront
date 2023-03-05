@@ -4,6 +4,7 @@ import { contexto } from "../../Context/Context";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { apiKey } from "../../apiKey";
 
 const ItemDetailContainer = ({ categoryId, id }) => {
   const [dataItem, setDataItem] = useState({});
@@ -12,7 +13,6 @@ const ItemDetailContainer = ({ categoryId, id }) => {
   const navigateBack = useNavigate();
   useEffect(() => {
     const fetchDataItem = async () => {
-      const apiKey = "3651041388931cf01228edbff2087680";
       if (categoryId === "movies") {
         const data = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&page=1`

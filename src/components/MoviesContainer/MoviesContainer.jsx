@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { contexto } from "../../Context/Context";
 import CardItem from "../CardItem/CardItem";
+import { apiKey } from "../../apiKey";
 
 const MoviesContainer = ({ categoryId }) => {
   const { querySearch } = useContext(contexto);
@@ -9,7 +10,6 @@ const MoviesContainer = ({ categoryId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = "3651041388931cf01228edbff2087680";
       if (querySearch.length >= 1) {
         setData(querySearch);
       } else if (categoryId === "tvshows") {
