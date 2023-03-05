@@ -4,7 +4,6 @@ import { contexto } from "../../Context/Context";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { apiKey } from "../../apiKey";
 
 const ItemDetailContainer = ({ categoryId, id }) => {
   const [dataItem, setDataItem] = useState({});
