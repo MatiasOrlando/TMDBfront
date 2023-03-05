@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { apiKey } from "../apiKey";
 export const contexto = createContext();
 const { Provider } = contexto;
 
@@ -11,7 +10,7 @@ const Context = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [querySearch, setQuerySearch] = useState([]);
   const [userFavorites, setUserFavorites] = useState([]);
-
+  const apiKey = "3651041388931cf01228edbff2087680";
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios.get(
