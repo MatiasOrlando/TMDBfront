@@ -37,9 +37,8 @@ const Context = ({ children }) => {
       //   };
       //   userPersist();
       // }
-
-      const userPersist = JSON.parse(localStorage.getItem("user"));
-      console.log(userPersist);
+      const userPersist = JSON.parse(localStorage.getItem("user")) || {};
+      setUserLogged(userPersist);
     } catch (error) {
       toast.error("Token expired log in again please", {
         duration: "100",
