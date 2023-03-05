@@ -33,6 +33,7 @@ const LogIn = () => {
         { withCredentials: true, credentials: "include" }
       );
       setUserLogged(userLogOk);
+      localStorage.setItem("user", JSON.stringify(userLogOk));
       navigateHome("/");
     } catch {
       toast.error("User not found, please try again", {
