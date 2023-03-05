@@ -24,19 +24,22 @@ const Context = ({ children }) => {
 
   useEffect(() => {
     try {
-      const matchCookie = document.cookie.match(
-        /^(.*;)?\s*token\s*=\s*[^;]+(.*)?$/
-      );
-      if (matchCookie) {
-        const userPersist = async () => {
-          const userLog = await axios.get(
-            "https://matiastmbdback.onrender.com/me",
-            { withCredentials: true, credentials: "include" }
-          );
-          setUserLogged(userLog);
-        };
-        userPersist();
-      }
+      // const matchCookie = document.cookie.match(
+      //   /^(.*;)?\s*token\s*=\s*[^;]+(.*)?$/
+      // );
+      // if (matchCookie) {
+      //   const userPersist = async () => {
+      //     const userLog = await axios.get(
+      //       "https://matiastmbdback.onrender.com/me",
+      //       { withCredentials: true, credentials: "include" }
+      //     );
+      //     setUserLogged(userLog);
+      //   };
+      //   userPersist();
+      // }
+
+      const userPersist = JSON.parse(localStorage.getItem("user"));
+      console.log(userPersist);
     } catch (error) {
       toast.error("Token expired log in again please", {
         duration: "100",
