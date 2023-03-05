@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { contexto } from "../../Context/Context";
 import CardItem from "../CardItem/CardItem";
-import { apiKey } from "../../apiKey";
 
 const MoviesContainer = ({ categoryId }) => {
   const { querySearch } = useContext(contexto);
