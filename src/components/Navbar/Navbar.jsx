@@ -62,7 +62,7 @@ const NavBar = () => {
               </Link>
             ) : (
               <Link to="/loguser">
-                <Button className="btn btn-dark">Log In</Button>
+                <Button className="btn btn-dark">Sign In</Button>
               </Link>
             )}
             <Link to={userLogged.data ? "/profile" : "/registration"}>
