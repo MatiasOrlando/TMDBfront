@@ -7,7 +7,7 @@ import { apiKey } from "../../apiKey";
 const MoviesContainer = ({ categoryId }) => {
   const { querySearch } = useContext(contexto);
   const [data, setData] = useState([]);
-
+  const apiKey = "3651041388931cf01228edbff2087680";
   useEffect(() => {
     const fetchData = async () => {
       if (querySearch.length >= 1) {

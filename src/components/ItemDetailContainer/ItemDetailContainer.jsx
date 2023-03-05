@@ -11,6 +11,7 @@ const ItemDetailContainer = ({ categoryId, id }) => {
   const path = "https://image.tmdb.org/t/p/w342";
   const { addToFavorites } = useContext(contexto);
   const navigateBack = useNavigate();
+  const apiKey = "3651041388931cf01228edbff2087680";
   useEffect(() => {
     const fetchDataItem = async () => {
       if (categoryId === "movies") {
