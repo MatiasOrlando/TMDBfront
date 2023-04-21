@@ -21,6 +21,7 @@ git clone https://github.com/MatiasOrlando/TMDBfront.git Front-end
 
 git clone https://github.com/MatiasOrlando/TMBDback.git Back-end
 
+
 cd back | cd front
 --------|---------
 npm i   | npm i
