@@ -14,6 +14,13 @@ Add and remove movies to/from favorites: Users can add their preferred movies to
 
 Display favorites list: This feature allows users to view their favorites list, which contains all the movies and tv shows they have added. Users can use this list to keep track of their favorite content.
 
+<br>
+
+## Deploy
+
+Link <a href="https://tmdb-front-five.vercel.app"/>TMDB</a>
+
+<br>
 
 ## Installation :hammer:
 
