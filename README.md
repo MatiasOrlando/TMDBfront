@@ -18,6 +18,7 @@ Display favorites list: This feature allows users to view their favorites list, 
 ## Installation :hammer:
 
 git clone https://github.com/MatiasOrlando/TMDBfront.git Front-end
+
 git clone https://github.com/MatiasOrlando/TMBDback.git Back-end
 
 cd back | cd front
