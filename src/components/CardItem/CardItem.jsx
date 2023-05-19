@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { contexto } from "../../Context/Context";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import Badge from "react-bootstrap/Badge";
 import noimg from "../../assets/noimg.jpeg";
@@ -26,8 +26,9 @@ export default function CardItem({
   categoryId,
   profileUrl,
 }) {
-  // const { pathname } = useLocation();
-  // const pathnameClean = pathname.slice(1);
+  const { pathname } = useLocation();
+  const pathnameClean = pathname.slice(1);
+
   const path = "https://image.tmdb.org/t/p/w300";
   const { handleWatchLater, addToFavorites, userFavorites, userWatchLater } =
     useContext(contexto);
@@ -41,6 +42,10 @@ export default function CardItem({
   useEffect(() => {
     setIsWatchOn(userWatchLater.some((userMovie) => userMovie.id === item.id));
   }, [item.id, userWatchLater]);
+
+  console.log(item.movieId);
+  console.log(item.id);
+  console.log(profileUrl);
 
   return (
     <Card
@@ -178,7 +183,7 @@ export default function CardItem({
           <Box style={{ maxHeight: "20%" }}>
             <Link
               to={
-                profileUrl === "profile"
+                pathnameClean === "profile"
                   ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId}`
                   : querySearch
                   ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
