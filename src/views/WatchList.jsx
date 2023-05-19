@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { contexto } from "../Context/Context";
+import CardItem from "../components/CardItem/CardItem";
 
 const WatchList = () => {
   const { userWatchLater } = useContext(contexto);
@@ -27,9 +28,7 @@ const WatchList = () => {
           }}
         >
           {userWatchLater.map((item) => {
-            return (
-              <CardItem key={item.id} item={item} profileUrl={profileUrl} />
-            );
+            return <CardItem key={item.id} item={item} />;
           })}
         </div>
       </div>

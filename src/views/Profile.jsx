@@ -8,8 +8,7 @@ import { Toaster } from "react-hot-toast";
 const Profile = () => {
   const { pathname } = useLocation();
   const profileUrl = pathname.slice(1);
-  const { userFavorites, setUserFavorites, userLogged, userWatchLater } =
-    useContext(contexto);
+  const { userFavorites, setUserFavorites, userLogged } = useContext(contexto);
   useEffect(() => {
     const fetchFavorites = async () => {
       const allFavs = await axios.get(
