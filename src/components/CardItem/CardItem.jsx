@@ -28,7 +28,6 @@ export default function CardItem({
 }) {
   const { pathname } = useLocation();
   const pathnameClean = pathname.slice(1);
-
   const path = "https://image.tmdb.org/t/p/w300";
   const { handleWatchLater, addToFavorites, userFavorites, userWatchLater } =
     useContext(contexto);
@@ -42,10 +41,6 @@ export default function CardItem({
   useEffect(() => {
     setIsWatchOn(userWatchLater.some((userMovie) => userMovie.id === item.id));
   }, [item.id, userWatchLater]);
-
-  console.log(item.movieId);
-  console.log(item.id);
-  console.log(profileUrl);
 
   return (
     <Card
@@ -72,7 +67,15 @@ export default function CardItem({
           ? "NO RATE"
           : parseFloat(item.vote_average).toFixed(2)}
       </Badge>
-      <Link to={`/movies/${item.id}`}>
+      <Link
+        to={
+          profileUrl === "profile"
+            ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId}`
+            : querySearch
+            ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
+            : `${item.title ? "movies" : "tvshows"}/${item.id}`
+        }
+      >
         <CardMedia
           component="img"
           alt="green iguana"
@@ -183,7 +186,7 @@ export default function CardItem({
           <Box style={{ maxHeight: "20%" }}>
             <Link
               to={
-                pathnameClean === "profile"
+                profileUrl === "profile"
                   ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId}`
                   : querySearch
                   ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
