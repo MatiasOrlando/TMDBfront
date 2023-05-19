@@ -59,7 +59,8 @@ const Context = ({ children }) => {
   };
 
   const addToFavorites = async (item) => {
-    if (userLogged !== {}) {
+    const userLog = JSON.parse(localStorage.getItem("user"));
+    if (userLogged === {}) {
       toast.error("You must log in to add favorites", {
         duration: "100",
         style: {
