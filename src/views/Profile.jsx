@@ -21,7 +21,7 @@ const Profile = () => {
       setUserFavorites(allFavs.data);
     };
     userLogged.data && fetchFavorites();
-  }, [userLogged, userFavorites, profileUrl, setUserFavorites, addToFavorites]);
+  }, [userLogged, userFavorites, profileUrl, setUserFavorites]);
 
   return (
     <>

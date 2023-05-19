@@ -90,7 +90,7 @@ const Context = ({ children }) => {
     // } else {
     try {
       const isFavMovie = userFavorites.find(
-        (userMovie) => userMovie.id === item.id
+        (userMovie) => userMovie.id === parseInt(item.id)
       );
       if (isFavMovie) {
         await axios.delete(
@@ -105,7 +105,7 @@ const Context = ({ children }) => {
           },
         });
         const newFavorites = userFavorites.filter(
-          (userMovie) => userMovie.id !== item.id
+          (userMovie) => userMovie.id !== parseInt(item.id)
         );
         setUserFavorites(newFavorites);
         localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
