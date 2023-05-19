@@ -33,7 +33,7 @@ const Profile = () => {
         >
           {userFavorites.length >= 1
             ? "My Favorites"
-            : "Oops no favorites added yet"}
+            : "Oops no favorites added yet..."}
         </h3>
         <div
           style={{

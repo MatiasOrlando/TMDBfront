@@ -60,8 +60,7 @@ const Context = ({ children }) => {
 
   const addToFavorites = async (item) => {
     const userLog = JSON.parse(localStorage.getItem("user"));
-    console.log(userLog);
-    if (userLog === {}) {
+    if (!userLog) {
       toast.error("You must log in to add favorites", {
         duration: "100",
         style: {
@@ -76,10 +75,6 @@ const Context = ({ children }) => {
           (userMovie) => userMovie.id === item.id
         );
         if (isFavMovie) {
-          const newFavorites = userFavorites.filter(
-            (userMovie) => userMovie.id !== item.id
-          );
-          setUserFavorites(newFavorites);
           await axios.delete(
             `https://matiastmbdback.onrender.com/removeFavorites?id=${item.id}`,
             { withCredentials: true, credentials: "include" }
@@ -91,6 +86,10 @@ const Context = ({ children }) => {
               color: "white",
             },
           });
+          const newFavorites = userFavorites.filter(
+            (userMovie) => userMovie.id !== item.id
+          );
+          setUserFavorites(newFavorites);
         } else {
           const newFavorites = [...userFavorites, item];
           setUserFavorites(newFavorites);
