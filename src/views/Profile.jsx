@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 const Profile = () => {
   const { pathname } = useLocation();
   const profileUrl = pathname.slice(1);
-  const { userFavorites, setUserFavorites, userLogged, addToFavorites } =
+  const { userFavorites, setUserFavorites, userLogged, userWatchLater } =
     useContext(contexto);
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -47,6 +47,21 @@ const Profile = () => {
           }}
         >
           {userFavorites.map((item) => {
+            return (
+              <CardItem key={item.id} item={item} profileUrl={profileUrl} />
+            );
+          })}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-evenly",
+            paddingBottom: "50px",
+          }}
+        >
+          {userWatchLater.map((item) => {
             return (
               <CardItem key={item.id} item={item} profileUrl={profileUrl} />
             );

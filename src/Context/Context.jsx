@@ -77,25 +77,17 @@ const Context = ({ children }) => {
   };
 
   const addToFavorites = async (item) => {
-    const userLog = JSON.parse(localStorage.getItem("user"));
-    // if (!userLog) {
-    //   toast.error("You must log in to add favorites", {
-    //     duration: "100",
-    //     style: {
-    //       background: "black",
-    //       color: "white",
-    //     },
-    //   });
-    //   return;
-    // } else {
     try {
       const isFavMovie = userFavorites.find(
-        (userMovie) => userMovie.id === parseInt(item.id)
+        (userMovie) => userMovie.id === item.id
       );
       if (isFavMovie) {
         await axios.delete(
           `https://matiastmbdback.onrender.com/removeFavorites?id=${item.id}`,
-          { withCredentials: true, credentials: "include" }
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
         );
         toast.error("Successfully deleted from favorites", {
           duration: "100",
@@ -105,7 +97,7 @@ const Context = ({ children }) => {
           },
         });
         const newFavorites = userFavorites.filter(
-          (userMovie) => userMovie.id !== parseInt(item.id)
+          (userMovie) => userMovie.id !== item.id
         );
         setUserFavorites(newFavorites);
         localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
@@ -125,7 +117,6 @@ const Context = ({ children }) => {
         const newFavorites = [...userFavorites, item];
         setUserFavorites(newFavorites);
         localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
-
         toast.success("Successfully added to favorites", {
           duration: "100",
           style: {
