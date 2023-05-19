@@ -5,6 +5,7 @@ export const contexto = createContext();
 const { Provider } = contexto;
 
 const Context = ({ children }) => {
+  //Context
   const [userLogged, setUserLogged] = useState({});
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
