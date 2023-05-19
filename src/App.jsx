@@ -8,7 +8,7 @@ import Home from "./views/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Category from "./views/Category";
 import ItemDetail from "./views/ItemDetail";
-import Profile from "./views/Profile";
+import Profile from "./views/Favorites";
 import WatchList from "./views/WatchList";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/:categoryId/:id" element={<ItemDetail />} />
           <Route path="/registration" element={<Register />} />
           <Route path="/loguser" element={<LogIn />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/watchlist" element={<WatchList />} />
         </Routes>
       </Context>

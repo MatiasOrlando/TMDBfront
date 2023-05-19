@@ -20,12 +20,7 @@ import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlin
 import Tooltip from "@mui/material/Tooltip";
 import { useState, useEffect } from "react";
 
-export default function CardItem({
-  item,
-  querySearch,
-  categoryId,
-  profileUrl,
-}) {
+export default function CardItem({ item, querySearch, categoryId }) {
   const { pathname } = useLocation();
   const pathnameClean = pathname.slice(1);
   const path = "https://image.tmdb.org/t/p/w300";
@@ -69,7 +64,7 @@ export default function CardItem({
       </Badge>
       <Link
         to={
-          profileUrl === "profile" || pathnameClean === "watchlist"
+          pathnameClean === "favorites" || pathnameClean === "watchlist"
             ? `/${item.adult ? "movies" : "tvshows"}/${
                 item.movieId || item.id
               } }`
@@ -188,7 +183,7 @@ export default function CardItem({
           <Box style={{ maxHeight: "20%" }}>
             <Link
               to={
-                profileUrl === "profile" || pathnameClean === "watchlist"
+                pathnameClean === "favorites" || pathnameClean === "watchlist"
                   ? `/${item.adult ? "movies" : "tvshows"}/${
                       item.movieId || item.id
                     }`

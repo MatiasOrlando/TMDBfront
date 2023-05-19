@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import CardItem from "../components/CardItem/CardItem";
 import { Toaster } from "react-hot-toast";
 
-const Profile = () => {
+const Favorites = () => {
   const { pathname } = useLocation();
   const profileUrl = pathname.slice(1);
   const { userFavorites, setUserFavorites, userLogged } = useContext(contexto);
@@ -44,9 +44,7 @@ const Profile = () => {
           }}
         >
           {userFavorites.map((item) => {
-            return (
-              <CardItem key={item.id} item={item} profileUrl={profileUrl} />
-            );
+            return <CardItem key={item.id} item={item} />;
           })}
         </div>
       </div>
@@ -55,4 +53,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Favorites;
