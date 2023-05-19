@@ -217,6 +217,7 @@ const ItemDetailContainer = ({ categoryId, id }) => {
             </Grid>
           </Grid>
         </Container>
+
         {trailerUrl && (
           <MovieTrailerContainer
             trailerUrl={trailerUrl}
