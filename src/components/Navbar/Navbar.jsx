@@ -44,7 +44,7 @@ const NavBar = () => {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px", color: "white" }}
+            style={{ maxHeight: "100px", marginLeft: "10px" }}
             navbarScroll
           >
             <Nav.Link href="/movies" style={{ color: "white" }}>
@@ -73,7 +73,7 @@ const NavBar = () => {
             )}
             <Link to={userLogged.data ? "/profile" : "/registration"}>
               <Button className="btn btn-dark">
-                {userLogged.data ? userLogged.data.nickname : "Register"}
+                {userLogged.data ? userLogged.data.nickname : "Sign up"}
               </Button>
             </Link>
           </div>

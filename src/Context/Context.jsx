@@ -51,6 +51,7 @@ const Context = ({ children }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!searchTerm || searchTerm.trim() === "") return;
     const dataQuery = await axios.get(
       `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${searchTerm}`
     );

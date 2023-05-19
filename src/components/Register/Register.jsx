@@ -96,7 +96,7 @@ const Register = () => {
         </Form.Group>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="dark" type="submit">
-            Register
+            Sign up
           </Button>
         </div>
       </Form>
