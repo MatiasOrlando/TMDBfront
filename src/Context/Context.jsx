@@ -60,6 +60,7 @@ const Context = ({ children }) => {
 
   const addToFavorites = async (item) => {
     const userLog = JSON.parse(localStorage.getItem("user"));
+    console.log(userLog);
     if (userLog === {}) {
       toast.error("You must log in to add favorites", {
         duration: "100",
@@ -69,52 +70,53 @@ const Context = ({ children }) => {
         },
       });
       return;
-    }
-    try {
-      const isFavMovie = userFavorites.find(
-        (userMovie) => userMovie.id === item.id
-      );
-      if (isFavMovie) {
-        const newFavorites = userFavorites.filter(
-          (userMovie) => userMovie.id !== item.id
+    } else {
+      try {
+        const isFavMovie = userFavorites.find(
+          (userMovie) => userMovie.id === item.id
         );
-        setUserFavorites(newFavorites);
-        await axios.delete(
-          `https://matiastmbdback.onrender.com/removeFavorites?id=${item.id}`,
-          { withCredentials: true, credentials: "include" }
-        );
-        toast.error("Successfully deleted from favorites", {
-          duration: "100",
-          style: {
-            background: "black",
-            color: "white",
-          },
-        });
-      } else {
-        const newFavorites = [...userFavorites, item];
-        setUserFavorites(newFavorites);
-        await axios.post(
-          "https://matiastmbdback.onrender.com/addFavorites",
-          {
-            email: userLogged.data.email,
-            movieId: item.id,
-            title: item.title || item.name,
-            vote_average: item.vote_average,
-            poster_path: item.poster_path,
-            adult: item.title ? true : false,
-          },
-          { withCredentials: true, credentials: "include" }
-        );
-        toast.success("Successfully added to favorites", {
-          duration: "100",
-          style: {
-            background: "black",
-            color: "white",
-          },
-        });
+        if (isFavMovie) {
+          const newFavorites = userFavorites.filter(
+            (userMovie) => userMovie.id !== item.id
+          );
+          setUserFavorites(newFavorites);
+          await axios.delete(
+            `https://matiastmbdback.onrender.com/removeFavorites?id=${item.id}`,
+            { withCredentials: true, credentials: "include" }
+          );
+          toast.error("Successfully deleted from favorites", {
+            duration: "100",
+            style: {
+              background: "black",
+              color: "white",
+            },
+          });
+        } else {
+          const newFavorites = [...userFavorites, item];
+          setUserFavorites(newFavorites);
+          await axios.post(
+            "https://matiastmbdback.onrender.com/addFavorites",
+            {
+              email: userLogged.data.email,
+              movieId: item.id,
+              title: item.title || item.name,
+              vote_average: item.vote_average,
+              poster_path: item.poster_path,
+              adult: item.title ? true : false,
+            },
+            { withCredentials: true, credentials: "include" }
+          );
+          toast.success("Successfully added to favorites", {
+            duration: "100",
+            style: {
+              background: "black",
+              color: "white",
+            },
+          });
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 

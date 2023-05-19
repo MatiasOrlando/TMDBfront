@@ -53,7 +53,11 @@ const NavBar = () => {
             <Nav.Link href="/tvshows" style={{ color: "white" }}>
               TV Shows
             </Nav.Link>
-            {userLogged.data && <Nav.Link href="/profile">Profile</Nav.Link>}
+            {userLogged.data && (
+              <Nav.Link href="/profile" style={{ color: "white" }}>
+                Profile
+              </Nav.Link>
+            )}
           </Nav>
           <div
             style={{
