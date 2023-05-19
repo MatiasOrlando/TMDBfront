@@ -184,11 +184,13 @@ export default function CardItem({ item, querySearch, categoryId }) {
             <Link
               to={
                 pathnameClean === "favorites" || pathnameClean === "watchlist"
-                  ? `/${item.title ? "movies" : "tvshows"}/${
+                  ? `/${item.title ? "movies" : "tvshows"}/${encodeURIComponent(
                       item.movieId || item.id
-                    }`
+                    )}`
                   : querySearch &&
-                    `/${item.title ? "movies" : "tvshows"}/${item.id}`
+                    `/${item.title ? "movies" : "tvshows"}/${encodeURIComponent(
+                      item.id
+                    )}`
               }
             >
               <Button size="small">Learn More</Button>
