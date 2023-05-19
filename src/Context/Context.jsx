@@ -11,6 +11,8 @@ const Context = ({ children }) => {
   const [querySearch, setQuerySearch] = useState([]);
   const [userFavorites, setUserFavorites] = useState([]);
   const [userWatchLater, setUserWatchLater] = useState([]);
+  const [pagination, setPagination] = useState(true);
+  const [page, setPage] = useState(1);
   const apiKey = "3651041388931cf01228edbff2087680";
 
   useEffect(() => {
@@ -182,6 +184,10 @@ const Context = ({ children }) => {
     addToFavorites,
     handleWatchLater,
     userWatchLater,
+    pagination,
+    setPagination,
+    page,
+    setPage,
   };
   return <Provider value={valueContext}>{children}</Provider>;
 };

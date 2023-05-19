@@ -3,10 +3,15 @@ import MoviesContainer from "../components/MoviesContainer/MoviesContainer";
 import SearchBar from "../components/SearchBar/SearchBar";
 import { Toaster } from "react-hot-toast";
 import { Box } from "@mui/material";
+import AppPagination from "../components/AppPagination/AppPagination";
 
 const Home = () => {
   return (
-    <>
+    <Box
+      sx={{
+        minHeight: "100vh",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -18,8 +23,9 @@ const Home = () => {
         <SearchBar />
       </Box>
       <MoviesContainer />
+      <AppPagination />
       <Toaster />
-    </>
+    </Box>
   );
 };
 
