@@ -65,9 +65,7 @@ export default function CardItem({ item, querySearch, categoryId }) {
       <Link
         to={
           pathnameClean === "favorites" || pathnameClean === "watchlist"
-            ? `/${item.adult ? "movies" : "tvshows"}/${
-                item.movieId || item.id
-              } }`
+            ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId || item.id}`
             : querySearch
             ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
             : `${item.title ? "movies" : "tvshows"}/${item.id}`
@@ -184,13 +182,12 @@ export default function CardItem({ item, querySearch, categoryId }) {
             <Link
               to={
                 pathnameClean === "favorites" || pathnameClean === "watchlist"
-                  ? `/${item.title ? "movies" : "tvshows"}/${encodeURI(
+                  ? `/${item.adult ? "movies" : "tvshows"}/${
                       item.movieId || item.id
-                    )}`
-                  : querySearch &&
-                    `/${item.title ? "movies" : "tvshows"}/${encodeURI(
-                      item.id
-                    )}`
+                    }`
+                  : querySearch
+                  ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
+                  : `${item.title ? "movies" : "tvshows"}/${item.id}`
               }
             >
               <Button size="small">Learn More</Button>
