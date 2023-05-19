@@ -184,12 +184,11 @@ export default function CardItem({ item, querySearch, categoryId }) {
             <Link
               to={
                 pathnameClean === "favorites" || pathnameClean === "watchlist"
-                  ? `/${item.adult ? "movies" : "tvshows"}/${
-                      item.movieId || item.id
+                  ? `/${item.title ? "movies" : "tvshows"}/${
+                      item.movieId.substring(0, 4) || item.id.substring(0, 4)
                     }`
-                  : querySearch
-                  ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
-                  : `${item.title ? "movies" : "tvshows"}/${item.id}`
+                  : querySearch &&
+                    `/${item.title ? "movies" : "tvshows"}/${item.id}`
               }
             >
               <Button size="small">Learn More</Button>

@@ -44,7 +44,6 @@ const ItemDetailContainer = ({ categoryId, id }) => {
         (movie) => movie.id === parseInt(id)
       );
       setIsInFavList(isFavoriteMovie !== undefined);
-
       const isWatchListMovie = userWatchLater.find(
         (movie) => movie.id === parseInt(id)
       );
