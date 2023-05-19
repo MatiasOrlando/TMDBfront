@@ -6,9 +6,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { contexto } from "../../Context/Context";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { FaTrashAlt } from "react-icons/fa";
 import Badge from "react-bootstrap/Badge";
 import noimg from "../../assets/noimg.jpeg";
 import { Box } from "@mui/material";
@@ -16,10 +15,9 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
-import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
+import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import Tooltip from "@mui/material/Tooltip";
-import { Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
 
 export default function CardItem({
@@ -28,16 +26,21 @@ export default function CardItem({
   categoryId,
   profileUrl,
 }) {
-  const { pathname } = useLocation();
-  const pathnameClean = pathname.slice(1);
+  // const { pathname } = useLocation();
+  // const pathnameClean = pathname.slice(1);
   const path = "https://image.tmdb.org/t/p/w300";
-  const { removeFromFavorites, addToFavorites, userFavorites } =
+  const { handleWatchLater, addToFavorites, userFavorites, userWatchLater } =
     useContext(contexto);
   const [isStarOn, setIsStarOn] = useState(false);
+  const [isWatchOn, setIsWatchOn] = useState(false);
 
   useEffect(() => {
     setIsStarOn(userFavorites.some((userMovie) => userMovie.id === item.id));
   }, [item.id, userFavorites]);
+
+  useEffect(() => {
+    setIsWatchOn(userWatchLater.some((userMovie) => userMovie.id === item.id));
+  }, [item.id, userWatchLater]);
 
   return (
     <Card
@@ -135,14 +138,44 @@ export default function CardItem({
             </Tooltip>
           </ToggleButtonGroup>
         </Box>
-        <div
+        <Box>
+          <ToggleButtonGroup>
+            <Tooltip
+              title={isWatchOn ? "Remove form watch list" : "Add to watch list"}
+            >
+              <ToggleButton
+                value={isWatchOn}
+                style={{
+                  border: "none",
+                  padding: 0,
+                  width: "auto",
+                  height: "auto",
+                }}
+                onClick={() => {
+                  handleWatchLater(item);
+                }}
+              >
+                {isWatchOn ? (
+                  <CheckCircleOutlineRoundedIcon />
+                ) : (
+                  <AddCircleOutlineRoundedIcon
+                    fontSize="medium"
+                    color="disabled"
+                    sx={{ paddingTop: "0.1em" }}
+                  />
+                )}
+              </ToggleButton>
+            </Tooltip>
+          </ToggleButtonGroup>
+        </Box>
+        <Box
           style={{
             display: "flex",
             justifyContent: "space-between",
             width: "200px",
           }}
         >
-          <div style={{ maxHeight: "20%" }}>
+          <Box style={{ maxHeight: "20%" }}>
             <Link
               to={
                 profileUrl === "profile"
@@ -154,13 +187,8 @@ export default function CardItem({
             >
               <Button size="small">Learn More</Button>
             </Link>
-          </div>
-          <div>
-            {pathnameClean === "profile" && (
-              <FaTrashAlt onClick={() => removeFromFavorites(item)} />
-            )}
-          </div>
-        </div>
+          </Box>
+        </Box>
       </CardActions>
     </Card>
   );
