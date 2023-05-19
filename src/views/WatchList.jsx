@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { contexto } from "../Context/Context";
 import CardItem from "../components/CardItem/CardItem";
+import { Toaster } from "react-hot-toast";
 
 const WatchList = () => {
   const { userWatchLater } = useContext(contexto);
