@@ -8,7 +8,7 @@ import Home from "./views/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Category from "./views/Category";
 import ItemDetail from "./views/ItemDetail";
-import Profile from "./views/Favorites";
+import Favorites from "./views/Favorites";
 import WatchList from "./views/WatchList";
 
 const App = () => {

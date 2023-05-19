@@ -55,7 +55,7 @@ const NavBar = () => {
             </Nav.Link>
             {userLogged.data && (
               <>
-                <Nav.Link href="/profile" style={{ color: "white" }}>
+                <Nav.Link href="/favorites" style={{ color: "white" }}>
                   Favorites
                 </Nav.Link>
                 <Nav.Link href="/watchlist" style={{ color: "white" }}>
