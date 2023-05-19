@@ -50,18 +50,6 @@ const Profile = () => {
             );
           })}
         </div>
-        <h3
-          style={{
-            textAlign: "center",
-            paddingTop: "100px",
-            color: "white",
-            fontFamily: "Roboto",
-          }}
-        >
-          {userWatchLater.length >= 1
-            ? "My Watch list"
-            : "Oops no movies added yet..."}
-        </h3>
       </div>
       <Toaster />
     </>
