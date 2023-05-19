@@ -5,14 +5,22 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { contexto } from "../../Context/Context";
 import { useLocation, Link } from "react-router-dom";
 import { useContext } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import Badge from "react-bootstrap/Badge";
 import noimg from "../../assets/noimg.jpeg";
+import { Box } from "@mui/material";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import Tooltip from "@mui/material/Tooltip";
+import { Toaster } from "react-hot-toast";
+import { useState, useEffect } from "react";
 
 export default function CardItem({
   item,
@@ -23,17 +31,29 @@ export default function CardItem({
   const { pathname } = useLocation();
   const pathnameClean = pathname.slice(1);
   const path = "https://image.tmdb.org/t/p/w300";
-  const { removeFromFavorites, addToFavorites } = useContext(contexto);
+  const { removeFromFavorites, addToFavorites, userFavorites } =
+    useContext(contexto);
+  const [isStarOn, setIsStarOn] = useState(false);
+
+  useEffect(() => {
+    setIsStarOn(userFavorites.some((userMovie) => userMovie.id === item.id));
+  }, [item.id, userFavorites]);
 
   return (
     <Card
       sx={{
         width: 255,
-        height: 500,
+        height: "500px",
         margin: "20px 0 20px 0px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        transform: "perspective(1000px) rotateY(0deg)",
+        transition: "transform 0.5s",
+        "&:hover": {
+          transform: "scale(1.1)",
+          border: "3px solid white",
+        },
       }}
     >
       <Badge
@@ -44,18 +64,34 @@ export default function CardItem({
           ? "NO RATE"
           : parseFloat(item.vote_average).toFixed(2)}
       </Badge>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="340"
-        image={item.poster_path ? `${path}${item.poster_path}` : noimg}
-      />
-
+      <Link to={`/movies/${item.id}`}>
+        <CardMedia
+          component="img"
+          alt="green iguana"
+          height="360"
+          image={item.poster_path ? `${path}${item.poster_path}` : noimg}
+        />
+      </Link>
       <CardContent>
         <Typography
           gutterBottom
           variant="h5"
-          sx={{ fontSize: "1.1em" }}
+          sx={{
+            fontSize: "1.1em",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 2,
+            width: "100%",
+            boxSizing: "border-box",
+            paddingRight: "20px",
+            alignItems: "flex-start",
+            height: "3.75em",
+            lineHeight: "1.2em",
+            maxHeight: "2.4em",
+            minHeight: "2.4em",
+          }}
           component="div"
         >
           {querySearch
@@ -74,17 +110,31 @@ export default function CardItem({
             : item.release_date}
         </Typography>
       </CardContent>
-      <CardActions>
-        {pathnameClean !== "profile" && (
-          <IconButton
-            aria-label="add to favorites"
-            onClick={() => {
-              addToFavorites(item);
-            }}
-          >
-            <FavoriteIcon />
-          </IconButton>
-        )}
+      <CardActions sx={{ pl: "12px" }}>
+        <Box>
+          <ToggleButtonGroup>
+            <Tooltip
+              title={isStarOn ? "Remove from favorites" : "Add to favorites"}
+            >
+              <ToggleButton
+                value={isStarOn}
+                onClick={() => addToFavorites(item)}
+                style={{
+                  border: "none",
+                  padding: 0,
+                  width: "auto",
+                  height: "auto",
+                }}
+              >
+                {isStarOn ? (
+                  <StarIcon color="warning" sx={{ opacity: 0.5 }} />
+                ) : (
+                  <StarBorderIcon sx={{ opacity: 0.5 }} />
+                )}
+              </ToggleButton>
+            </Tooltip>
+          </ToggleButtonGroup>
+        </Box>
         <div
           style={{
             display: "flex",
