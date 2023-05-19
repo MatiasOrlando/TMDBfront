@@ -16,12 +16,10 @@ const Profile = () => {
         `https://matiastmbdback.onrender.com/getAllFavs?id=${userLogged.data.id}`,
         { withCredentials: true, credentials: "include" }
       );
-
-      console.log(allFavs);
       setUserFavorites(allFavs.data);
     };
     userLogged.data && fetchFavorites();
-  }, [userLogged, userFavorites, profileUrl, setUserFavorites]);
+  }, [userLogged, userFavorites, profileUrl]);
 
   return (
     <>
@@ -52,7 +50,18 @@ const Profile = () => {
             );
           })}
         </div>
-
+        <h3
+          style={{
+            textAlign: "center",
+            paddingTop: "100px",
+            color: "white",
+            fontFamily: "Roboto",
+          }}
+        >
+          {userWatchLater.length >= 1
+            ? "My Watch list"
+            : "Oops no movies added yet..."}
+        </h3>
         <div
           style={{
             display: "flex",
