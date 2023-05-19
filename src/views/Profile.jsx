@@ -22,7 +22,7 @@ const Profile = () => {
 
   return (
     <>
-      <div>
+      <div style={{ minHeight: "100vh" }}>
         <h3
           style={{
             textAlign: "center",
