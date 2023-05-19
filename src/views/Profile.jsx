@@ -15,6 +15,8 @@ const Profile = () => {
         `https://matiastmbdback.onrender.com/getAllFavs?id=${userLogged.data.id}`,
         { withCredentials: true, credentials: "include" }
       );
+
+      console.log(allFavs);
       setUserFavorites(allFavs.data);
     };
     userLogged.data && fetchFavorites();

@@ -110,9 +110,6 @@ const Context = ({ children }) => {
         setUserFavorites(newFavorites);
         localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
       } else {
-        const newFavorites = [...userFavorites, item];
-        setUserFavorites(newFavorites);
-        localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
         await axios.post(
           "https://matiastmbdback.onrender.com/addFavorites",
           {
@@ -125,6 +122,10 @@ const Context = ({ children }) => {
           },
           { withCredentials: true, credentials: "include" }
         );
+        const newFavorites = [...userFavorites, item];
+        setUserFavorites(newFavorites);
+        localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
+
         toast.success("Successfully added to favorites", {
           duration: "100",
           style: {
