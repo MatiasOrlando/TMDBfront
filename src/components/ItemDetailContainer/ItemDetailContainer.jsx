@@ -40,9 +40,14 @@ const ItemDetailContainer = ({ categoryId, id }) => {
         );
         setDataItem(data.data);
       }
-      const isFavoriteMovie = userFavorites.find((movie) => movie.id === id);
-      const isWatchListMovie = userWatchLater.find((movie) => movie.id === id);
+      const isFavoriteMovie = userFavorites.find(
+        (movie) => movie.id === parseInt(id)
+      );
       setIsInFavList(isFavoriteMovie !== undefined);
+
+      const isWatchListMovie = userWatchLater.find(
+        (movie) => movie.id === parseInt(id)
+      );
       setIsInWatchList(isWatchListMovie !== undefined);
     };
 
