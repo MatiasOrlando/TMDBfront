@@ -185,10 +185,7 @@ export default function CardItem({ item, querySearch, categoryId }) {
               to={
                 pathnameClean === "favorites" || pathnameClean === "watchlist"
                   ? `/${item.title ? "movies" : "tvshows"}/${
-                      item.movieId
-                        .toString()
-                        .substring(0, item.movieId.indexOf("%")) ||
-                      item.id.toString().substring(0, item.id.indexOf("%"))
+                      item.movieId || item.id
                     }`
                   : querySearch &&
                     `/${item.title ? "movies" : "tvshows"}/${item.id}`
