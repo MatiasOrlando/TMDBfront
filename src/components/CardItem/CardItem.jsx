@@ -70,7 +70,9 @@ export default function CardItem({
       <Link
         to={
           profileUrl === "profile" || pathnameClean === "watchlist"
-            ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId}`
+            ? `/${item.adult ? "movies" : "tvshows"}/${
+                item.movieId || item.id
+              } }`
             : querySearch
             ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
             : `${item.title ? "movies" : "tvshows"}/${item.id}`
@@ -187,7 +189,9 @@ export default function CardItem({
             <Link
               to={
                 profileUrl === "profile" || pathnameClean === "watchlist"
-                  ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId}`
+                  ? `/${item.adult ? "movies" : "tvshows"}/${
+                      item.movieId || item.id
+                    }`
                   : querySearch
                   ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
                   : `${item.title ? "movies" : "tvshows"}/${item.id}`
