@@ -54,9 +54,14 @@ const NavBar = () => {
               TV Shows
             </Nav.Link>
             {userLogged.data && (
-              <Nav.Link href="/profile" style={{ color: "white" }}>
-                Profile
-              </Nav.Link>
+              <>
+                <Nav.Link href="/profile" style={{ color: "white" }}>
+                  Profile
+                </Nav.Link>
+                <Nav.Link href="/watchlist" style={{ color: "white" }}>
+                  Watch list
+                </Nav.Link>
+              </>
             )}
           </Nav>
           <div

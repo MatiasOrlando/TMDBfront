@@ -69,7 +69,7 @@ export default function CardItem({
       </Badge>
       <Link
         to={
-          profileUrl === "profile"
+          profileUrl === "profile" || pathnameClean === "watchlist"
             ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId}`
             : querySearch
             ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
@@ -186,7 +186,7 @@ export default function CardItem({
           <Box style={{ maxHeight: "20%" }}>
             <Link
               to={
-                profileUrl === "profile"
+                profileUrl === "profile" || pathnameClean === "watchlist"
                   ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId}`
                   : querySearch
                   ? `/${item.title ? "movies" : "tvshows"}/${item.id}`

@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Category from "./views/Category";
 import ItemDetail from "./views/ItemDetail";
 import Profile from "./views/Profile";
+import WatchList from "./views/WatchList";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/registration" element={<Register />} />
           <Route path="/loguser" element={<LogIn />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/watchlist" element={<WatchList />} />
         </Routes>
       </Context>
     </BrowserRouter>
