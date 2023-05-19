@@ -27,6 +27,7 @@ const ItemDetailContainer = ({ categoryId, id }) => {
     useContext(contexto);
   const navigateHome = useNavigate();
   const apiKey = "3651041388931cf01228edbff2087680";
+
   useEffect(() => {
     const fetchDataItem = async () => {
       if (categoryId === "movies") {
@@ -40,18 +41,21 @@ const ItemDetailContainer = ({ categoryId, id }) => {
         );
         setDataItem(data.data);
       }
-      const isFavoriteMovie = userFavorites.find(
-        (movie) => movie.id === parseInt(id)
-      );
-      setIsInFavList(isFavoriteMovie !== undefined);
-      const isWatchListMovie = userWatchLater.find(
-        (movie) => movie.id === parseInt(id)
-      );
-      setIsInWatchList(isWatchListMovie !== undefined);
     };
-
     fetchDataItem();
-  }, [id, categoryId, userFavorites, userWatchLater]);
+  }, [id, categoryId]);
+
+  useEffect(() => {
+    const isFavoriteMovie = userFavorites.find(
+      (movie) => movie.id === parseInt(id)
+    );
+    setIsInFavList(isFavoriteMovie !== undefined);
+
+    const isWatchListMovie = userWatchLater.find(
+      (movie) => movie.id === parseInt(id)
+    );
+    setIsInWatchList(isWatchListMovie !== undefined);
+  }, [id, userFavorites, userWatchLater]);
 
   useEffect(() => {
     const getMovieTrailers = async () => {
