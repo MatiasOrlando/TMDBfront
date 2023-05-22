@@ -68,7 +68,7 @@ const Register = () => {
         }}
       >
         <h2 style={{ textAlign: "center" }}>Sign Up</h2>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
