@@ -9,7 +9,7 @@ const Favorites = () => {
   useEffect(() => {
     const fetchFavorites = async () => {
       const allFavs = await axios.get(
-        `https://matiastmbdback.onrender.com/getAllFavs?id=${userLogged.data.id}`,
+        `https://matias-tmdb.onrender.com/getAllFavs?id=${userLogged.data.id}`,
         {
           withCredentials: true,
           credentials: "include",

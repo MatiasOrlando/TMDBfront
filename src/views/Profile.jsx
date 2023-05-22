@@ -13,7 +13,7 @@ const Profile = () => {
     try {
       if (userLogged.data) {
         const user = await axios.get(
-          `https://matiastmbdback.onrender.com/infoUser?email=${userLogged.data.email}`
+          `https://matias-tmdb.onrender.com/infoUser?email=${userLogged.data.email}`
         );
         setUserData(user.data);
       }
@@ -31,7 +31,7 @@ const Profile = () => {
     const newUrlAvatar = prompt("Enter the URL of your new avatar");
     if (newUrlAvatar && newUrlAvatar.trim() !== "") {
       await axios.put(
-        `https://matiastmbdback.onrender.com/updateImg?email=${userLogged.data.email}`,
+        `https://matias-tmdb.onrender.com/updateImg?email=${userLogged.data.email}`,
         {
           profileImg: newUrlAvatar,
         }

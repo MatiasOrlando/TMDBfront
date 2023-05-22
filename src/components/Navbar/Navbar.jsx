@@ -12,7 +12,7 @@ const NavBar = () => {
   const navigateHome = useNavigate();
   const logOut = async () => {
     try {
-      await axios.post("https://matiastmbdback.onrender.com/logout", {
+      await axios.post("https://matias-tmdb.onrender.com/logout", {
         withCredentials: true,
         credentials: "include",
       });

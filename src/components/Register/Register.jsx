@@ -23,7 +23,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://matiastmbdback.onrender.com/register",
+        "https://matias-tmdb.onrender.com/register",
         {
           username: formValues.username,
           email: formValues.email,

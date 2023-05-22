@@ -99,7 +99,7 @@ const Context = ({ children }) => {
       );
       if (index !== -1) {
         await axios.delete(
-          `https://matiastmbdback.onrender.com/removeFavorites?id=${
+          `https://matias-tmdb.onrender.com/removeFavorites?id=${
             item.id || item.movieId
           }`,
           {
@@ -120,7 +120,7 @@ const Context = ({ children }) => {
         localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
       } else {
         await axios.post(
-          "https://matiastmbdback.onrender.com/addFavorites",
+          "https://matias-tmdb.onrender.com/addFavorites",
           {
             email: userLogged.data.email,
             movieId: item.id || item.movieId,
