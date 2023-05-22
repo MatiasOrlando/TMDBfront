@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+
 const Register = () => {
   const [formValues, setFormValues] = useState({
     username: "",
@@ -31,9 +32,9 @@ const Register = () => {
         { withCredentials: true, credentials: "include" }
       );
       swal({
-        title: `Account successfully created`,
-        icon: `success`,
-        button: `Confirm`,
+        title: "Account successfully created",
+        icon: "success",
+        button: "Confirm",
       }).then(() => navigateLogIn("/loguser"));
     } catch (err) {
       console.log(err);
@@ -45,24 +46,28 @@ const Register = () => {
       style={{
         display: "flex",
         justifyContent: "center",
-        height: "100vh",
-        alignItems: "center",
+
+        minHeight: "100vh",
+        padding: "20px",
         backgroundSize: "cover",
         backgroundImage:
           "url('https://images.unsplash.com/photo-1512149074996-e923ac45be6a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80')",
       }}
     >
       <Form
-        className="w-25"
+        className="w-100"
         onSubmit={handleSubmit}
         style={{
           backgroundColor: "white",
           padding: "40px",
-          opacity: ".9",
+          opacity: "0.9",
           borderRadius: "20px",
-          marginBottom: "270px",
+          margin: "50px 20px",
+          maxWidth: "400px",
+          maxHeight: "57vh",
         }}
       >
+        <h2 style={{ textAlign: "center" }}>Sign Up</h2>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Username</Form.Label>
           <Form.Control
@@ -70,6 +75,7 @@ const Register = () => {
             name="username"
             placeholder="Enter username"
             onChange={formData}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -79,6 +85,7 @@ const Register = () => {
             name="email"
             placeholder="Enter email"
             onChange={formData}
+            required
           />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -92,11 +99,12 @@ const Register = () => {
             placeholder="Password"
             onChange={formData}
             name="password"
+            required
           />
         </Form.Group>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="dark" type="submit">
-            Register
+            Sign up
           </Button>
         </div>
       </Form>

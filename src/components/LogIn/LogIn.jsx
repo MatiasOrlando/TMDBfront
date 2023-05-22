@@ -52,22 +52,25 @@ const LogIn = () => {
         style={{
           display: "flex",
           justifyContent: "center",
-          height: "100vh",
-          alignItems: "center",
+
           backgroundSize: "cover",
           backgroundImage:
             "url('https://images.unsplash.com/photo-1512149074996-e923ac45be6a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80')",
+          minHeight: "100vh",
+          padding: "20px",
         }}
       >
         <Form
-          className="w-25"
+          className="w-100"
           onSubmit={handleSubmit}
           style={{
             backgroundColor: "white",
             padding: "40px",
             opacity: ".9",
             borderRadius: "20px",
-            marginBottom: "340px",
+            maxWidth: "400px",
+            maxHeight: "45vh",
+            margin: "50px 20px 0 20px",
           }}
         >
           <h2 style={{ textAlign: "center" }}> Sign In</h2>
@@ -78,6 +81,7 @@ const LogIn = () => {
               name="username"
               placeholder="Enter username"
               onChange={formData}
+              required
             />
           </Form.Group>
 
@@ -88,11 +92,12 @@ const LogIn = () => {
               placeholder="Password"
               name="password"
               onChange={formData}
+              required
             />
           </Form.Group>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Button variant="dark" type="submit">
-              Log in
+              Sign in
             </Button>
           </div>
         </Form>
