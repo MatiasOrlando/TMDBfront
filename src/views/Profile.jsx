@@ -41,36 +41,6 @@ const Profile = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <>
-      <div style={{ minHeight: "100vh" }}>
-        <h3
-          style={{
-            textAlign: "center",
-            paddingTop: "50px",
-            color: "white",
-            fontFamily: "Roboto",
-          }}
-        >
-          {userFavorites.length >= 1
-            ? "My Favorites"
-            : "Oops no favorites added yet"}
-        </h3>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-            paddingBottom: "50px",
-          }}
-        >
-          {userFavorites.map((item) => {
-            return (
-              <CardItem key={item.id} item={item} profileUrl={profileUrl} />
-            );
-          })}
-        </div>
-=======
     <section style={{ height: "100vh" }}>
       <div
         style={{
@@ -134,7 +104,6 @@ const Profile = () => {
             </div>
           </div>
         )}
->>>>>>> tmbd-final
       </div>
     </section>
   );
