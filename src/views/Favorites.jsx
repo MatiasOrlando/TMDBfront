@@ -22,7 +22,7 @@ const Favorites = () => {
 
   return (
     <>
-      <div style={{ height: "100vh" }}>
+      <div style={{ minHeight: "100vh" }}>
         <h3
           style={{
             textAlign: "center",

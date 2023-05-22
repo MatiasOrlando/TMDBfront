@@ -7,7 +7,7 @@ const WatchList = () => {
   const { userWatchLater } = useContext(contexto);
   return (
     <>
-      <div style={{ height: "100vh" }}>
+      <div style={{ minHeight: "100vh" }}>
         <h3
           style={{
             textAlign: "center",
