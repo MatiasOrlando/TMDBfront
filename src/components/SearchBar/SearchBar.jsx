@@ -1,41 +1,53 @@
-import React, { useContext } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { MDBCol } from "mdbreact";
+import React, { useState, useContext } from "react";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
+import SearchIcon from "@mui/icons-material/Search";
 import { contexto } from "../../Context/Context";
 
 const SearchBar = () => {
-  const { setSearchTerm, handleSubmit } = useContext(contexto);
+  const { setSearchTerm, searchTerm, handleSubmit } = useContext(contexto);
+  const [showClearIcon, setShowClearIcon] = useState(false);
+
+  const handleClearInput = () => {
+    setSearchTerm("");
+    setShowClearIcon(false);
+  };
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+    setShowClearIcon(e.target.value.trim() !== "");
+  };
 
   return (
-    <div
-      style={{
+    <Paper
+      component="form"
+      sx={{
+        p: "2px 4px",
         display: "flex",
-        justifyContent: "center",
-        margin: "20px 0px 20px 20px",
+        alignItems: "center",
+        width: { xs: 300, sm: 320, md: 440, lg: 640 },
       }}
+      onSubmit={handleSubmit}
+      name="search"
     >
-      <MDBCol md="6">
-        <Form className="d-flex" onSubmit={handleSubmit}>
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Search for a movie, tv show..."
-            aria-label="Search"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-          />
-          <Button
-            type="submit"
-            className="btn btn-light"
-            style={{ marginLeft: "10px" }}
-          >
-            Search
-          </Button>
-        </Form>
-      </MDBCol>
-    </div>
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="Search for a movie, tv show..."
+        onChange={handleChange}
+        value={searchTerm}
+        // required
+      />
+      <IconButton type="submit" aria-label="search">
+        <SearchIcon />
+      </IconButton>
+      {showClearIcon && (
+        <IconButton onClick={() => handleClearInput()}>
+          <HighlightOffSharpIcon />
+        </IconButton>
+      )}
+    </Paper>
   );
 };
 

@@ -38,6 +38,8 @@ cd back     | cd front
 npm run server | npm start
 
 
+Open http://localhost:3000 to view it on your browser.
+
 <br>
 
 ## Technologies 🛠️

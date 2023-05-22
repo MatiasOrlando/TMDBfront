@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import Button from "react-bootstrap/Button";
+import Button from "@mui/material/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -25,7 +25,7 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="black" expand="sm">
       <Container fluid>
         <Nav.Link href="/">
           <img
@@ -36,16 +36,33 @@ const NavBar = () => {
             alt="TMBD logo"
           />
         </Nav.Link>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle
+          aria-controls="navbarScroll"
+          bg="light"
+          sx={{ color: "white" }}
+        />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
+            style={{ maxHeight: "100px", marginLeft: "10px" }}
             navbarScroll
           >
-            <Nav.Link href="/movies">Movies</Nav.Link>
-            <Nav.Link href="/tvshows">TV Shows</Nav.Link>
-            {userLogged.data && <Nav.Link href="/profile">Profile</Nav.Link>}
+            <Nav.Link href="/movies" style={{ color: "white" }}>
+              Movies
+            </Nav.Link>
+            <Nav.Link href="/tvshows" style={{ color: "white" }}>
+              TV Shows
+            </Nav.Link>
+            {userLogged.data && (
+              <>
+                <Nav.Link href="/favorites" style={{ color: "white" }}>
+                  Favorites
+                </Nav.Link>
+                <Nav.Link href="/watchlist" style={{ color: "white" }}>
+                  Watch list
+                </Nav.Link>
+              </>
+            )}
           </Nav>
           <div
             style={{
@@ -53,12 +70,11 @@ const NavBar = () => {
               width: "250px",
               justifyContent: "space-around",
             }}
+            className="btnsCollapse"
           >
             {userLogged.data ? (
               <Link>
-                <Button className="btn btn-dark" onClick={() => logOut()}>
-                  Log out
-                </Button>
+                <Button onClick={() => logOut()}>Log out</Button>
               </Link>
             ) : (
               <Link to="/loguser">
@@ -67,7 +83,7 @@ const NavBar = () => {
             )}
             <Link to={userLogged.data ? "/profile" : "/registration"}>
               <Button className="btn btn-dark">
-                {userLogged.data ? userLogged.data.nickname : "Register"}
+                {userLogged.data ? userLogged.data.nickname : "Sign up"}
               </Button>
             </Link>
           </div>
