@@ -11,3 +11,13 @@ body {
 .navbar-toggler-icon {
             filter: invert(1);
           }
+
+
+ @media (max-width: 580px) {
+  .btnsCollapse{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 20px;
+  }
+}         

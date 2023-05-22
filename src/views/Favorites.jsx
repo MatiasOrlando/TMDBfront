@@ -1,24 +1,24 @@
 import React, { useContext, useEffect } from "react";
 import { contexto } from "../Context/Context";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 import CardItem from "../components/CardItem/CardItem";
 import { Toaster } from "react-hot-toast";
 
 const Favorites = () => {
-  const { pathname } = useLocation();
-  const profileUrl = pathname.slice(1);
   const { userFavorites, setUserFavorites, userLogged } = useContext(contexto);
   useEffect(() => {
     const fetchFavorites = async () => {
       const allFavs = await axios.get(
         `https://matiastmbdback.onrender.com/getAllFavs?id=${userLogged.data.id}`,
-        { withCredentials: true, credentials: "include" }
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
       );
       setUserFavorites(allFavs.data);
     };
     userLogged.data && fetchFavorites();
-  }, [userLogged, userFavorites, profileUrl]);
+  }, [userLogged, userFavorites]);
 
   return (
     <>

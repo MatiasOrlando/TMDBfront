@@ -10,7 +10,7 @@ import Category from "./views/Category";
 import ItemDetail from "./views/ItemDetail";
 import Favorites from "./views/Favorites";
 import WatchList from "./views/WatchList";
-
+import Profile from "./views/Profile";
 const App = () => {
   return (
     <BrowserRouter>
@@ -24,6 +24,7 @@ const App = () => {
           <Route path="/loguser" element={<LogIn />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/watchlist" element={<WatchList />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Context>
     </BrowserRouter>

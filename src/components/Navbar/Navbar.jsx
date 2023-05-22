@@ -70,6 +70,7 @@ const NavBar = () => {
               width: "250px",
               justifyContent: "space-around",
             }}
+            className="btnsCollapse"
           >
             {userLogged.data ? (
               <Link>

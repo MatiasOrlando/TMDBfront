@@ -47,8 +47,9 @@ const ItemDetailContainer = ({ categoryId, id }) => {
 
   useEffect(() => {
     const isFavoriteMovie = userFavorites.find(
-      (movie) => movie.id === parseInt(id)
+      (movie) => movie.id === parseInt(id) || movie.movieId === parseInt(id)
     );
+
     setIsInFavList(isFavoriteMovie !== undefined);
 
     const isWatchListMovie = userWatchLater.find(
@@ -72,9 +73,7 @@ const ItemDetailContainer = ({ categoryId, id }) => {
           const trailerKey = trailers[0].key;
           setTrailerUrl(`https://www.youtube.com/embed/${trailerKey}`);
         }
-      } catch (error) {
-        console.error(error);
-      }
+      } catch (error) {}
     };
     getMovieTrailers();
   }, [id]);

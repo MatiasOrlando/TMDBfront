@@ -73,17 +73,34 @@ const Context = ({ children }) => {
     const dataQuery = await axios.get(
       `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${searchTerm}`
     );
-    setQuerySearch(dataQuery.data.results);
+
+    if (!dataQuery.data.results.length) {
+      toast.error("No matches found, please try again", {
+        duration: 1000,
+        style: {
+          background: "black",
+          color: "white",
+        },
+        className: "error-toast-test",
+      });
+      return;
+    } else {
+      setQuerySearch(dataQuery.data.results);
+    }
   };
 
   const addToFavorites = async (item) => {
     try {
-      const isFavMovie = userFavorites.find(
-        (userMovie) => userMovie.id === item.id
+      const index = userFavorites.findIndex(
+        (userMovie) =>
+          userMovie.id === (item.id || item.movieId) ||
+          userMovie.movieId === (item.id || item.movieId)
       );
-      if (isFavMovie) {
+      if (index !== -1) {
         await axios.delete(
-          `https://matiastmbdback.onrender.com/removeFavorites?id=${item.id}`,
+          `https://matiastmbdback.onrender.com/removeFavorites?id=${
+            item.id || item.movieId
+          }`,
           {
             withCredentials: true,
             credentials: "include",
@@ -96,9 +113,8 @@ const Context = ({ children }) => {
             color: "white",
           },
         });
-        const newFavorites = userFavorites.filter(
-          (userMovie) => userMovie.id !== item.id
-        );
+        const newFavorites = [...userFavorites];
+        newFavorites.splice(index, 1);
         setUserFavorites(newFavorites);
         localStorage.setItem("userFavorites", JSON.stringify(newFavorites));
       } else {
@@ -106,7 +122,7 @@ const Context = ({ children }) => {
           "https://matiastmbdback.onrender.com/addFavorites",
           {
             email: userLogged.data.email,
-            movieId: item.id,
+            movieId: item.id || item.movieId,
             title: item.title || item.name,
             vote_average: item.vote_average,
             poster_path: item.poster_path,
@@ -126,33 +142,55 @@ const Context = ({ children }) => {
         });
       }
     } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleWatchLater = (movie) => {
-    const isWatchListMovie = userWatchLater.find(
-      (userMovie) => userMovie.id === movie.id
-    );
-    if (!isWatchListMovie) {
-      const newUserWatchLater = [...userWatchLater, movie];
-      localStorage.setItem("userWatchLater", JSON.stringify(newUserWatchLater));
-      setUserWatchLater(newUserWatchLater);
-      toast.success("Successfully added to watch list", {
+      toast.error("You must log in to add favorites", {
         duration: "100",
         style: {
           background: "black",
           color: "white",
         },
-        className: "success-watch-toast-test",
       });
-    } else {
-      const updatedWatchList = userWatchLater.filter(
-        (userMovie) => userMovie.id !== movie.id
+    }
+  };
+
+  const handleWatchLater = (movie) => {
+    if (Object.keys(userLogged).length !== 0 || !userLogged) {
+      const isWatchListMovie = userWatchLater.find(
+        (userMovie) => userMovie.id === movie.id
       );
-      localStorage.setItem("userWatchLater", JSON.stringify(updatedWatchList));
-      setUserWatchLater(updatedWatchList);
-      toast.error("Removed from watch list", {
+      if (!isWatchListMovie) {
+        const newUserWatchLater = [...userWatchLater, movie];
+        localStorage.setItem(
+          "userWatchLater",
+          JSON.stringify(newUserWatchLater)
+        );
+        setUserWatchLater(newUserWatchLater);
+        toast.success("Successfully added to watch list", {
+          duration: "100",
+          style: {
+            background: "black",
+            color: "white",
+          },
+          className: "success-watch-toast-test",
+        });
+      } else {
+        const updatedWatchList = userWatchLater.filter(
+          (userMovie) => userMovie.id !== movie.id
+        );
+        localStorage.setItem(
+          "userWatchLater",
+          JSON.stringify(updatedWatchList)
+        );
+        setUserWatchLater(updatedWatchList);
+        toast.error("Removed from watch list", {
+          duration: "100",
+          style: {
+            background: "black",
+            color: "white",
+          },
+        });
+      }
+    } else {
+      return toast.error("You must log in to add to watch list", {
         duration: "100",
         style: {
           background: "black",

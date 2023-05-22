@@ -8,7 +8,6 @@ import { contexto } from "../../Context/Context";
 
 const SearchBar = () => {
   const { setSearchTerm, searchTerm, handleSubmit } = useContext(contexto);
-
   const [showClearIcon, setShowClearIcon] = useState(false);
 
   const handleClearInput = () => {

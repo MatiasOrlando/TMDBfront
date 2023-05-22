@@ -37,6 +37,7 @@ const MoviesContainer = ({ categoryId }) => {
         flexWrap: "wrap",
         justifyContent: "space-evenly",
         marginInline: "50px",
+        minHeight: "100vh",
       }}
     >
       {data.map((item) => {

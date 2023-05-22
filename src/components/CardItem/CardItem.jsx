@@ -19,6 +19,7 @@ import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRou
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import Tooltip from "@mui/material/Tooltip";
 import { useState, useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function CardItem({ item, querySearch, categoryId }) {
   const { pathname } = useLocation();
@@ -54,21 +55,52 @@ export default function CardItem({ item, querySearch, categoryId }) {
         },
       }}
     >
-      <Badge
-        bg="dark"
-        style={{ zIndex: "1", position: "absolute", fontSize: "1rem" }}
-      >
-        {isNaN(item.vote_average) || item.vote_average === 0.0
-          ? "NO RATE"
-          : parseFloat(item.vote_average).toFixed(2)}
-      </Badge>
+      <Box sx={{ position: "absolute", display: "inline-flex", zIndex: "1" }}>
+        <CircularProgress
+          variant="determinate"
+          value={parseFloat(item.vote_average).toFixed(2) * 10}
+          thickness={3.6}
+          color="primary"
+          sx={{
+            "& .MuiCircularProgress-circle": {
+              strokeLinecap: "round",
+            },
+          }}
+        />
+        <Box
+          sx={{
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+            transform: "translate(-50%, -50%)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            backgroundColor: "white",
+          }}
+        >
+          <Typography
+            variant="caption"
+            component="div"
+            color="text.secondary"
+            sx={{ fontWeight: "bold" }}
+          >
+            {parseFloat(item.vote_average).toFixed(2)}
+          </Typography>
+        </Box>
+      </Box>
       <Link
         to={
-          pathnameClean === "favorites" || pathnameClean === "watchlist"
+          pathnameClean === "favorites"
             ? `/${item.adult ? "movies" : "tvshows"}/${item.movieId || item.id}`
-            : querySearch
-            ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
-            : `${item.title ? "movies" : "tvshows"}/${item.id}`
+            : pathnameClean === "watchlist"
+            ? `/${!item.adult && item.title ? "movies" : "tvshows"}/${
+                item.movieId || item.id
+              }`
+            : querySearch && `/${item.title ? "movies" : "tvshows"}/${item.id}`
         }
       >
         <CardMedia
@@ -181,13 +213,16 @@ export default function CardItem({ item, querySearch, categoryId }) {
           <Box style={{ maxHeight: "20%" }}>
             <Link
               to={
-                pathnameClean === "favorites" || pathnameClean === "watchlist"
+                pathnameClean === "favorites"
                   ? `/${item.adult ? "movies" : "tvshows"}/${
                       item.movieId || item.id
                     }`
-                  : querySearch
-                  ? `/${item.title ? "movies" : "tvshows"}/${item.id}`
-                  : `${item.title ? "movies" : "tvshows"}/${item.id}`
+                  : pathnameClean === "watchlist"
+                  ? `/${!item.adult && item.title ? "movies" : "tvshows"}/${
+                      item.movieId || item.id
+                    }`
+                  : querySearch &&
+                    `/${item.title ? "movies" : "tvshows"}/${item.id}`
               }
             >
               <Button size="small">Learn More</Button>
