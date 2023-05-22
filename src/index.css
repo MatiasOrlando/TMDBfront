@@ -13,6 +13,12 @@ body {
 }
 
 
+ @media (max-width: 480px) {
+  .form-register {
+    height: 70vh !important;
+  }
+} 
+
  @media (max-width: 580px) {
   .btnsCollapse{
     width: 100% !important;

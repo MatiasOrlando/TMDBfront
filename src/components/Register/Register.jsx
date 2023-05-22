@@ -55,7 +55,7 @@ const Register = () => {
       }}
     >
       <Form
-        className="w-100"
+        className="w-100 form-register"
         onSubmit={handleSubmit}
         style={{
           backgroundColor: "white",
@@ -64,7 +64,7 @@ const Register = () => {
           borderRadius: "20px",
           margin: "50px 20px",
           maxWidth: "400px",
-          maxHeight: "57vh",
+          height: "57vh",
         }}
       >
         <h2 style={{ textAlign: "center" }}>Sign Up</h2>
